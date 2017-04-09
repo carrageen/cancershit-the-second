@@ -1,7 +1,9 @@
-package Server;
+package server;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+
+import cancerAPI.Message;
 
 public class Listener implements Runnable {
 	Socket client;

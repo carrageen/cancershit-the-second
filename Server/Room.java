@@ -1,6 +1,8 @@
-package Server;
+package server;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import cancerAPI.Message;
 
 public class Room {
 	private ArrayList<User> users;
