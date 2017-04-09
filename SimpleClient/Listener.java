@@ -6,33 +6,26 @@ import java.net.Socket;
 
 import Server.Message;
 
-public class IncomingHandler implements Runnable {
+public class Listener implements Runnable {
 	ObjectInputStream ois;
 	Socket socket;
 	
-	public IncomingHandler(Socket s) throws IOException {
+	public Listener(Socket s) throws IOException {
 		ois = new ObjectInputStream(s.getInputStream());
 		socket = s;
 	}
 
 	public void run() {
-		while (!socket.isClosed()) {
+		while (!socket.isInputShutdown()) {
 			try {
-				String msg = ((Message) ois.readObject()).msg;
+				String msg = ((Message) ois.readObject()).text;
 				System.out.println(msg);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		try {
-			socket.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 

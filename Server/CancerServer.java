@@ -10,9 +10,10 @@ public class CancerServer {
 		boolean running = true;
 		while(running) {
 			Socket client = serverSocket.accept();
-			System.out.println("New connection from " + client.getRemoteSocketAddress());
-			room.addUser(new User(client));
-			
+			User user = new User(client);
+			user.generateName();
+			room.addUser(user);
+			System.out.println(user.getName() + " connected from " + user.getSocket());
 		}
 		serverSocket.close();
 	}

@@ -12,17 +12,28 @@ public class Room {
 	public void addUser(User u) {
 		users.add(u);
 		try {
-			new Thread(new ConnectionHandler(u, this)).start();
+			new Thread(new Listener(u, this)).start();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		send(new Message(u + " connected"));
 	}
 	
-	public void send(Message msg) throws IOException{
+	public void send(Message msg){
 		for (User u : users) {
-			u.send(msg);
+			try {
+				u.send(msg);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+	}
+	
+	public void removeUser(User u) {
+		users.remove(u);
+		send(new Message(u + " disconnected"));
 	}
 
 }

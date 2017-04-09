@@ -6,7 +6,8 @@ import java.net.Socket;
 public class User {
 	private ObjectOutputStream toClient;
 	private Socket socket;
-	public UserInfo info;
+	private String name;
+
 	public User(Socket s) throws IOException {
 		toClient = new ObjectOutputStream(s.getOutputStream());
 		socket = s;
@@ -19,5 +20,17 @@ public class User {
 	
 	public Socket getSocket() {
 		return socket;
+	}
+
+	public void generateName() {
+		name = "Robert Paulson";
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String toString() {
+		return getName();
 	}
 }
