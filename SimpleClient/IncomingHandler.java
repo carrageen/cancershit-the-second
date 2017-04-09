@@ -8,13 +8,15 @@ import Server.Message;
 
 public class IncomingHandler implements Runnable {
 	ObjectInputStream ois;
+	Socket socket;
 	
 	public IncomingHandler(Socket s) throws IOException {
 		ois = new ObjectInputStream(s.getInputStream());
+		socket = s;
 	}
 
 	public void run() {
-		while (true) {
+		while (!socket.isClosed()) {
 			try {
 				String msg = ((Message) ois.readObject()).msg;
 				System.out.println(msg);
@@ -25,6 +27,12 @@ public class IncomingHandler implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		try {
+			socket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

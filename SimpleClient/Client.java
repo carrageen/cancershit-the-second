@@ -11,7 +11,7 @@ import Server.UserInfo;
 
 public class Client {
 	public static void main (String[] args) throws UnknownHostException, IOException {
-		Socket server = new Socket("80.139.156.67", 4269);
+		Socket server = new Socket(/*"80.139.156.67"*/"localhost", 4269);
 		Scanner scanner = new Scanner(System.in);
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(server.getOutputStream());
 		objectOutputStream.writeObject(new UserInfo());
