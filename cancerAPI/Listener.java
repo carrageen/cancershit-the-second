@@ -28,5 +28,14 @@ public class Listener implements Runnable {
 			}
 		}
 	}
+	
+	public void close() {
+		try {
+			ois.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }

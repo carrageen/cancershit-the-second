@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class APIExample {
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		Socket socket = new Socket("localhost", 4269);
-		//Ein CancerClient Object Verbindet sich mit dem Server und erstellt automatisch
+		//Ein CancerClient Object verbindet sich mit dem Server und erstellt automatisch
 		//Den Thread um einkommende Nachrichten zu behandeln.
 		//CancerClient ist abstract und muss mit einer onMessageIncoming() Methode
 		//ausgestattet werden die immer dann aufgerufen wird, wenn eine Nachricht eintrifft.
@@ -25,6 +25,9 @@ public class APIExample {
 			
 			client.send(scanner.nextLine());
 		}
+		
+		//Aus Höflichkeit die Verbindung schließen.
+		client.disconnect();
 		scanner.close();
 	}
 
