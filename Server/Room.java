@@ -2,7 +2,7 @@ package server;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import cancerAPI.Message;
+import com.chattr.neonardo.chattr.Message;
 
 public class Room {
 	private ArrayList<User> users;

@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import cancerAPI.Message;
+import com.chattr.neonardo.chattr.Message;
 
 public class User {
 	private ObjectOutputStream toClient;

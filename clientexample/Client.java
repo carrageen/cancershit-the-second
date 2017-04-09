@@ -1,6 +1,6 @@
 package clientexample;
 
-import cancerAPI.CancerClient;
+import com.chattr.neonardo.chattr.CancerClient;
 
 public class Client extends CancerClient {
 

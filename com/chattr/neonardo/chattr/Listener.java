@@ -1,4 +1,4 @@
-package cancerAPI;
+package com.chattr.neonardo.chattr;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

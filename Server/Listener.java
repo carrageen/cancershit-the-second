@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
-import cancerAPI.Message;
+import com.chattr.neonardo.chattr.Message;
 
 public class Listener implements Runnable {
 	Socket client;
