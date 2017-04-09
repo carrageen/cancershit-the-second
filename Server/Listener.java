@@ -34,5 +34,6 @@ public class Listener implements Runnable {
 			}
 		}
 		room.removeUser(user);
+		System.out.println("Connection closed: "+  user + " " + client);
 	}
 }
