@@ -28,6 +28,7 @@ public class User {
 	}
 
 	public void generateName() {
+		name = "Robert Paulson";
 		try {
 			File nameList = new File("C:/Users/Manull/Desktop/census-dist-male-first.txt");
 			Scanner sc;
