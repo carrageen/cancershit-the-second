@@ -23,8 +23,12 @@ public class Listener implements Runnable {
 		try {
 			while(!client.isInputShutdown()) {
 				Message msg = (Message) input.readObject();
-				room.send(new Message(user.getName() + ": " + msg.text));
-				System.out.println("Message from " + user.getName() + ": " + msg.text);
+				if (msg.text.startsWith("!name"))
+					user.send(new Message("Your name is " + user.getName()));
+				else {
+					room.send(new Message(user.getName() + ": " + msg.text));
+					System.out.println("Message from " + user.getName() + ": " + msg.text);
+				}
 			}
 		} catch (ClassNotFoundException | IOException e) {
 			try {
