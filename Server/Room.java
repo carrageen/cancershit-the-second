@@ -1,36 +1,30 @@
 package server;
 import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 
 import cancerApi.Message;
 
 public class Room {
-	private ArrayList<User> users;
+	private ArrayList<UserConnection> userConnections;
 	
 	public Room() {
-		users = new ArrayList<User>();
+		userConnections = new ArrayList<UserConnection>();
 	}
 	
-	public void addUser(User u) {
-		users.add(u);
+	public void addConnection(Socket socket) {
 		try {
-			new Thread(new Listener(u, this)).start();
+			UserConnection uc = new UserConnection(socket, this);
+			userConnections.add(uc);
+			new Thread(uc).start();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		send(new Message(u + " connected"));
 	}
 	
 	public void send(Message msg){
-		for (User u : users) {
+		for (UserConnection u : userConnections) {
 			u.send(msg);
 		}
 	}
-	
-	public void removeUser(User u) {
-		users.remove(u);
-		send(new Message(u + " disconnected"));
-	}
-
 }

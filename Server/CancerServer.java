@@ -4,17 +4,23 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class CancerServer {
-	public static void main(String[] args) throws IOException {
-		ServerSocket serverSocket = new ServerSocket(4269);
+	public static void main(String[] args) {
+		ServerSocket serverSocket = null;
+		try {
+			serverSocket = new ServerSocket(4269);
+		} catch (IOException e) {}
+		
 		Room room = new Room();
 		boolean running = true;
-		while(running) {
-			Socket client = serverSocket.accept();
-			User user = new User(client);
-			user.generateName();
-			room.addUser(user);
-			System.out.println(user.getName() + " connected from " + user.getSocket());
+		
+		try {
+			while(running) {
+				Socket client = serverSocket.accept();
+				room.addConnection(client);
+			}
+			serverSocket.close();
+		} catch (IOException e) {
+			
 		}
-		serverSocket.close();
 	}
 }

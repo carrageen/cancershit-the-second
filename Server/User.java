@@ -1,40 +1,16 @@
 package server;
 import java.io.File;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
 import java.util.Random;
 import java.util.Scanner;
 
-import cancerApi.Message;
-
 public class User {
-	private ObjectOutputStream toClient;
-	private Socket socket;
 	private String name;
-	int messageDelay=17;
-
-	public User(Socket s) throws IOException {
-		toClient = new ObjectOutputStream(s.getOutputStream());
-		socket = s;
-	}
-
-	public void send(Message msg) {
-		messageDelay();
-		try {
-			toClient.writeObject(msg);
-			toClient.flush();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 	
-	public Socket getSocket() {
-		return socket;
+	public User() {
+		generateName();
 	}
 
-	public void generateName() {
+	void generateName() {
 		name = "Robert Paulson";
 		try {
 			File nameList = new File("C:/Users/Manull/Desktop/census-dist-male-first.txt");
@@ -60,25 +36,14 @@ public class User {
 			this.name = selectedName;
 
 		} catch(Exception e) {
-			
 		}
 	}
 
 	public String getName() {
 		return name;
-
 	}
 
 	public String toString() {
 		return getName();
-	}
-	
-	private void messageDelay() {
-		try {
-			Thread.sleep(messageDelay);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
