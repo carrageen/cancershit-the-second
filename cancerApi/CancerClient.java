@@ -14,15 +14,14 @@ public abstract class CancerClient {
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			listener = new Listener(socket, this);
 			new Thread(listener).start();
-		} catch (IOException e) {
-		}
+		} catch (IOException e) {}
 	}
 	
 	public void send(String s) {
 		try {
 			oos.writeObject(new Message(s));
 		} catch (IOException e) {
-			e.printStackTrace();
+			disconnect();
 		}
 	}
 	
@@ -33,10 +32,6 @@ public abstract class CancerClient {
 			oos.close();
 			listener.close();
 			socket.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		} catch (IOException e) {}
 	}
-
 }
