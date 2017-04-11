@@ -1,4 +1,4 @@
-package server;
+package Server;
 import java.io.File;
 import java.util.Random;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class User {
 	void generateName() {
 		name = "Robert Paulson";
 		try {
-			File nameList = new File("C:/Users/Manull/Desktop/census-dist-male-first.txt");
+			File nameList = new File("https://www2.census.gov/topics/genealogy/1990surnames/dist.male.first");
 			Scanner sc;
 			int nameListLines = 1000;
 			Random rand = new Random();
