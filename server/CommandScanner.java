@@ -10,13 +10,9 @@ public class CommandScanner {
 	}
 	
 	public boolean scan(String msg) {
-		//find inner command calls
-		
-		
 		String[] words = msg.split(" ");
 		String command = words[0];
 		String[] arguments = Arrays.copyOfRange(words, 1, words.length);
-		
 		
 		if(binds.containsKey(command)) {
 			binds.get(command).run(arguments);
@@ -25,6 +21,4 @@ public class CommandScanner {
 			return false;
 		}
 	}
-	
-
 }

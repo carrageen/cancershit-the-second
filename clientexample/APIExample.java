@@ -29,5 +29,4 @@ public class APIExample {
 		client.disconnect();
 		scanner.close();
 	}
-
 }

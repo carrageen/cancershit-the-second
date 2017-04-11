@@ -35,8 +35,7 @@ public class User {
 
 			this.name = selectedName;
 
-		} catch(Exception e) {
-		}
+		} catch(Exception e) {}
 	}
 
 	public String getName() {
