@@ -9,11 +9,14 @@ public class CancerServer {
 		Room room = new Room();
 		boolean running = true;
 		while(running) {
-			Socket client = serverSocket.accept();
-			User user = new User(client);
-			user.generateName();
-			room.addUser(user);
-			System.out.println(user.getName() + " connected from " + user.getSocket());
+			try (Socket client = serverSocket.accept();
+			
+			) {
+				User user = new User(client);
+				user.generateName();
+				room.addUser(user);
+				System.out.println(user.getName() + " connected from " + user.getSocket());
+			}
 		}
 		serverSocket.close();
 	}
