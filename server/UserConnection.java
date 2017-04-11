@@ -41,7 +41,6 @@ public class UserConnection implements Runnable {
 				handleMessage(msg);
 			} 
 		}catch (IOException ioe) {
-//			System.out.println("Could not read from input of user " + user);
 			disconnect();
 		} catch (ClassNotFoundException cnfe) {
 			cnfe.printStackTrace();
@@ -58,7 +57,6 @@ public class UserConnection implements Runnable {
 			output.writeObject(msg);
 			output.flush();
 		} catch (IOException e) {
-//			System.out.println("Could not send messsage to " + user);
 			disconnect();
 		}
 	}

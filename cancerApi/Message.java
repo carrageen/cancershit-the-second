@@ -11,10 +11,6 @@ public class Message implements Serializable{
 		this.text = msg;
 	}
 
-	public Message() {
-		this.text = "";
-	}
-	
 	public String toString() {
 		return text;
 	}
