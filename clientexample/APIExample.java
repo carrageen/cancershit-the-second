@@ -22,7 +22,6 @@ public class APIExample {
 		boolean running = true;
 		while(running) {
 			//Schicke Nachricht als einfachen String an den Server
-			
 			client.send(scanner.nextLine());
 		}
 		

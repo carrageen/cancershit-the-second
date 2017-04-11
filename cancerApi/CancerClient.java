@@ -7,14 +7,14 @@ import java.net.Socket;
 public abstract class CancerClient {
 	private ObjectOutputStream oos;
 	private Listener listener;
-	public void connect(Socket s) {
+	Socket socket;
+	public void connect(Socket socket) {
 		try {
-			oos = new ObjectOutputStream(s.getOutputStream());
-			listener = new Listener(s, this);
+			this.socket = socket;
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			listener = new Listener(socket, this);
 			new Thread(listener).start();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 	
@@ -22,7 +22,6 @@ public abstract class CancerClient {
 		try {
 			oos.writeObject(new Message(s));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -33,8 +32,8 @@ public abstract class CancerClient {
 		try {
 			oos.close();
 			listener.close();
+			socket.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

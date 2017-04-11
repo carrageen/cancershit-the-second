@@ -24,7 +24,7 @@ public class Listener implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				e.printStackTrace();
+				client.disconnect();
 			}
 		}
 	}

@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import cancerApi.Message;
 
 public class Room {
-	private ArrayList<UserConnection> userConnections;
+	ArrayList<UserConnection> userConnections;
+	String name;
 	
 	public Room() {
 		userConnections = new ArrayList<UserConnection>();
+		setName("room");
 	}
 	
 	public void addConnection(Socket socket) {
@@ -26,5 +28,18 @@ public class Room {
 		for (UserConnection u : userConnections) {
 			u.send(msg);
 		}
+		System.out.println(name + ": " + msg.text);
+	}
+	
+	public void remove(UserConnection uc) {
+		userConnections.remove(uc);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

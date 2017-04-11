@@ -27,11 +27,11 @@ public class UserConnection implements Runnable {
 	@Override
 	public void run() {
 		try( 
-			ObjectInputStream sinput = new ObjectInputStream(client.getInputStream());
-			ObjectOutputStream soutput = new ObjectOutputStream(client.getOutputStream()))
+			ObjectInputStream ois = new ObjectInputStream(client.getInputStream());
+			ObjectOutputStream oos = new ObjectOutputStream(client.getOutputStream()))
 		{
-			input = sinput;
-			output = soutput;
+			input = ois;
+			output = oos;
 			
 		room.send(new Message(user + " connected"));
 		
@@ -48,10 +48,10 @@ public class UserConnection implements Runnable {
 		
 		} catch(IOException e) {}
 		room.send(new Message(user + " disconnected"));
-
+		room.remove(this);
 	}
 	
-	public void send(Message msg) {
+	public synchronized void send(Message msg) {
 		messageDelay();
 		try {
 			output.writeObject(msg);
@@ -78,7 +78,6 @@ public class UserConnection implements Runnable {
 	void handleMessage(Message msg) {
 		if(!cm.scan(msg.text)) {
 			room.send(new Message(user.getName() + ": " + msg.text));
-			System.out.println("Message from " + user.getName() + ": " + msg.text);
 		}
 	}
 }
