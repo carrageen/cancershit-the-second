@@ -16,16 +16,16 @@ public class Listener implements Runnable {
 	}
 
 	public void run() {
-		while (!socket.isInputShutdown()) {
-			try {
+		try {
+			while (!socket.isInputShutdown()) {
 				Message msg = (Message) ois.readObject();
 				client.onMessageIncoming(msg);
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				client.disconnect();
 			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			client.disconnect();
 		}
 	}
 	
