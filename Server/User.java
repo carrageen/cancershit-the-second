@@ -6,21 +6,28 @@ import java.net.Socket;
 import java.util.Random;
 import java.util.Scanner;
 
-import com.chattr.neonardo.chattr.Message;
+import cancerApi.Message;
 
 public class User {
 	private ObjectOutputStream toClient;
 	private Socket socket;
 	private String name;
+	int messageDelay=17;
 
 	public User(Socket s) throws IOException {
 		toClient = new ObjectOutputStream(s.getOutputStream());
 		socket = s;
 	}
 
-	public void send(Message msg) throws IOException {
-		toClient.writeObject(msg);
-		toClient.flush();
+	public void send(Message msg) {
+		messageDelay();
+		try {
+			toClient.writeObject(msg);
+			toClient.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public Socket getSocket() {
@@ -64,5 +71,14 @@ public class User {
 
 	public String toString() {
 		return getName();
+	}
+	
+	private void messageDelay() {
+		try {
+			Thread.sleep(messageDelay);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

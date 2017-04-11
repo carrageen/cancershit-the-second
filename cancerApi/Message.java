@@ -1,4 +1,4 @@
-package com.chattr.neonardo.chattr;
+package cancerApi;
 import java.io.Serializable;
 
 public class Message implements Serializable{

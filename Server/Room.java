@@ -2,7 +2,7 @@ package server;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.chattr.neonardo.chattr.Message;
+import cancerApi.Message;
 
 public class Room {
 	private ArrayList<User> users;
@@ -24,12 +24,7 @@ public class Room {
 	
 	public void send(Message msg){
 		for (User u : users) {
-			try {
-				u.send(msg);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			u.send(msg);
 		}
 	}
 	

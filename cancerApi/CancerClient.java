@@ -1,4 +1,4 @@
-package com.chattr.neonardo.chattr;
+package cancerApi;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -27,7 +27,7 @@ public abstract class CancerClient {
 		}
 	}
 	
-	protected abstract void onMessageIncoming(String msg);
+	protected abstract void onMessageIncoming(Message msg);
 	
 	public void disconnect() {
 		try {

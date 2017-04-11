@@ -1,4 +1,4 @@
-package com.chattr.neonardo.chattr;
+package cancerApi;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -18,7 +18,7 @@ public class Listener implements Runnable {
 	public void run() {
 		while (!socket.isInputShutdown()) {
 			try {
-				String msg = ((Message) ois.readObject()).text;
+				Message msg = (Message) ois.readObject();
 				client.onMessageIncoming(msg);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
