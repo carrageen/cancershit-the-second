@@ -21,6 +21,7 @@ public class UserConnection implements Runnable {
 		this.room = room;
 		
 		cm.bind("!name", (s) -> {send(new Message("Your name is " + user.getName()));});
+		cm.bind("!room", (s) -> {send(new Message("You are in room " + room.getName()));});
 		cm.bind("!yell", (s) -> {for(String b:s)room.send(new Message(user.getName()+": "+b.toUpperCase()));});
 	}
 
