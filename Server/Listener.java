@@ -19,7 +19,7 @@ public class Listener implements Runnable {
 		input = new ObjectInputStream(user.getSocket().getInputStream());
 		this.room = room;
 		
-		cm.bind("!name", (s) -> {user.send(new Message("Your name is " + user.getName()));});
+		cm.bind("!name", (s) -> {user.send(new Message(user.getName()));});
 		cm.bind("!yell", (s) -> {for(String b:s)room.send(new Message(user.getName()+": "+b.toUpperCase()));});
 	}
 
