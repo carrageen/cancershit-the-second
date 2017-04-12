@@ -11,6 +11,8 @@ public class CommandScanner {
 	
 	public boolean scan(String msg) {
 		String[] words = msg.split(" ");
+		if(words.length == 0)
+			return false;
 		String command = words[0];
 		String[] arguments = Arrays.copyOfRange(words, 1, words.length);
 		
