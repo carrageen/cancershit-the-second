@@ -7,16 +7,16 @@ import java.net.Socket;
 public abstract class CancerClient {
 	private ObjectOutputStream oos;
 	private Listener listener;
-	Socket socket;
+	private Socket socket;
 	public void connect(Socket socket) {
 		try {
 			this.socket = socket;
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			listener = new Listener(socket, this);
 			new Thread(listener).start();
-		} catch (IOException e) {}
+		} catch (IOException e) {e.printStackTrace();}
 	}
-	
+
 	public void send(String s) {
 		try {
 			oos.writeObject(new Message(s));
@@ -24,9 +24,9 @@ public abstract class CancerClient {
 			disconnect();
 		}
 	}
-	
+
 	protected abstract void onMessageIncoming(Message msg);
-	
+
 	public void disconnect() {
 		try {
 			oos.close();
