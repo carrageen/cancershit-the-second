@@ -1,5 +1,5 @@
-package server;
+package Server;
 
-public interface ChatCommand {
-	public void run(String[] arguments);
+interface ChatCommand {
+	void run(String[] arguments);
 }
